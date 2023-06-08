@@ -63,16 +63,23 @@ function soundMapping(keyOrWord){
 
 }
 
-
-
 function clickHandler(){
     var buttonInnerHTML = this.innerHTML ; 
     soundMapping(buttonInnerHTML);
+    pressedAnimation(buttonInnerHTML) ; 
 }
 
 function keyPressHandler(event){
-    document.querySelector("."+event.key).style.color = "white" ; 
+    // document.querySelector("."+event.key).style.color = "white" ; 
     soundMapping(event.key);
+    pressedAnimation(event.key) ; 
+}
+
+function pressedAnimation(wordRecorded) {
+    document.querySelector("." + wordRecorded).classList.add("pressed") ;
+    setTimeout(function(){
+        document.querySelector("." + wordRecorded).classList.remove("pressed") ;
+    }, 150) ; 
 }
 
 var len = document.querySelectorAll("button").length ; 
@@ -81,5 +88,3 @@ for(var i = 0; i<len; i++){
 }
 
 document.addEventListener("keypress", keyPressHandler);
-
-// adding commentttt
