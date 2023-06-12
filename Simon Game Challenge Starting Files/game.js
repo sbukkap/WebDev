@@ -1,14 +1,13 @@
-function nextSequence() {
-    var rN = Math.floor(Math.random()*3) ; 
-    return rN ; 
-}
-
-var gamePattern = [] ; 
-var buttonColors = ["red" , "blue" , "green" , "yellow"] ; 
-var randomChosenColor = buttonColors[nextSequence()] ; 
+var gamePattern = [] ;
 var userClickedPattern = [] ; 
 
-gamePattern.push(randomChosenColor) ; 
+function nextSequence() {
+    var rN = Math.floor(Math.random()*3) ; 
+    var buttonColors = ["red" , "blue" , "green" , "yellow"] ;
+    var randomChosenColor = buttonColors[rN] ; 
+    gamePattern.push(randomChosenColor) ; 
+    return randomChosenColor ; 
+}
 
 // add flash, sounds
 function buttonFlash(chosenButton) {
@@ -42,10 +41,45 @@ function buttonSound(chosenButton) {
 
 function clickHandler() {
     userChosenColor = $(this).attr("id") ;
-    userClickedPattern.push(userChosenColor) ; 
+    userClickedPattern.push(userChosenColor) ;
+    if (equalityChecker()===false){
+        gameLost();
+        playGame = false ; 
+        // $(document).on("keypress", keypressHandler) ;
+    }
+    else{
+        level++; 
+    }  
     buttonFlash(userChosenColor) ; 
     buttonSound(userChosenColor) ; 
 }
 
-$(".btn").on("click", clickHandler)
+// #################################
+function equalityChecker() {
+    if (userClickedPattern[userClickedPattern.length - 1] !== gamePattern[userClickedPattern.length - 1]){
+        return false;
+    }
+    return true ; 
+}
+// #################################
 
+function keypressHandler() {
+    // update : re-add while here????
+    var playGame = true ; 
+    var level = 1 ;
+    $("h1").fadeOut(100).text("Level "+level).fadeIn(100) ; 
+    var rcc = nextSequence() ; 
+    buttonSound(rcc) ; 
+    buttonFlash(rcc) ; 
+    $(".btn").on("click", clickHandler) ; 
+}
+
+function gameLost() {
+    var wrong = new Audio("sounds/wrong.mp3") ;
+    wrong.play() ; 
+    $("h1").fadeOut(100).text("Wrong Button, Press any key to try again").fadeIn(100) ; 
+    userClickedPattern = [] ; 
+    gamePattern = [] ;    
+}
+
+$(document).on("keypress", keypressHandler) ; 
