@@ -2,16 +2,16 @@ var gamePattern = [] ;
 var userClickedPattern = [] ; 
 
 function nextSequence() {
-    var rN = Math.floor(Math.random()*3) ; 
+    var rN = Math.floor(Math.random()*4) ; 
     var buttonColors = ["red" , "blue" , "green" , "yellow"] ;
     var randomChosenColor = buttonColors[rN] ; 
     gamePattern.push(randomChosenColor) ; 
     return randomChosenColor ; 
 }
 
-// add flash, sounds
 function buttonFlash(chosenButton) {
-    $("."+chosenButton).fadeOut(50).fadeIn(50) ; 
+    // $("."+chosenButton).delay(200);
+    $("."+chosenButton).fadeOut(100).fadeIn(100) ; 
 }
 
 function buttonSound(chosenButton) {
@@ -39,42 +39,48 @@ function buttonSound(chosenButton) {
     }
 }
 
-function clickHandler() {
-    userChosenColor = $(this).attr("id") ;
-    userClickedPattern.push(userChosenColor) ;
-    if (equalityChecker()===false){
-        gameLost();
-        playGame = false ; 
-        // $(document).on("keypress", keypressHandler) ;
-    }
-    else{
-        level++; 
-    }  
-    buttonFlash(userChosenColor) ; 
-    buttonSound(userChosenColor) ; 
-}
-
-// #################################
 function equalityChecker() {
-    if (userClickedPattern[userClickedPattern.length - 1] !== gamePattern[userClickedPattern.length - 1]){
+    if (userClickedPattern.length > gamePattern.length || userClickedPattern[userClickedPattern.length - 1] !== gamePattern[userClickedPattern.length - 1]){
+        console.log(userClickedPattern);
+        console.log(gamePattern);
         return false;
     }
     return true ; 
 }
-// #################################
 
 function keypressHandler() {
-    // update : re-add while here????
-    var playGame = true ; 
-    var level = 1 ;
-    $("h1").fadeOut(100).text("Level "+level).fadeIn(100) ; 
+    
+    // $("h1").fadeOut(100).text("Level "+level).fadeIn(100) ;
     var rcc = nextSequence() ; 
     buttonSound(rcc) ; 
-    buttonFlash(rcc) ; 
-    $(".btn").on("click", clickHandler) ; 
+    buttonFlash(rcc) ;
+    $(".btn").on("click", function clickHandler(){
+        var userChosenColor = $(this).attr("id") ;
+        userClickedPattern.push(userChosenColor) ;
+        buttonFlash(userChosenColor) ; 
+        buttonSound(userChosenColor) ;
+        if (equalityChecker()===false){
+            levelFailed();
+        }
+        else if(userClickedPattern.length === gamePattern.length){
+            $("h1").fadeOut(100).text("Level Passed").fadeIn(100) ;
+            userClickedPattern = [];
+            rcc = nextSequence() ; 
+            buttonSound(rcc) ; 
+            buttonFlash(rcc) ;
+            // levelPassed();
+        }   
+    }) ;    
 }
 
-function gameLost() {
+function levelPassed(){
+    userClickedPattern = [];
+    $("h1").fadeOut(100).text("Level Passed").fadeIn(100) ;
+    keypressHandler();
+
+}
+
+function levelFailed() {
     var wrong = new Audio("sounds/wrong.mp3") ;
     wrong.play() ; 
     $("h1").fadeOut(100).text("Wrong Button, Press any key to try again").fadeIn(100) ; 
