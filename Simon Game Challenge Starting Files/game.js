@@ -1,5 +1,6 @@
 var gamePattern = [] ;
 var userClickedPattern = [] ; 
+var level = 1;
 
 function nextSequence() {
     var rN = Math.floor(Math.random()*4) ; 
@@ -48,44 +49,57 @@ function equalityChecker() {
     return true ; 
 }
 
-function keypressHandler() {
-    
-    // $("h1").fadeOut(100).text("Level "+level).fadeIn(100) ;
+function keypressHandler() { 
+    $(document).off("keypress") ;
+
+    $("h1").fadeOut(50).text("Level " + level).fadeIn(50) ;
+
     var rcc = nextSequence() ; 
-    buttonSound(rcc) ; 
+    $("."+rcc).delay(800);
     buttonFlash(rcc) ;
+    $("."+rcc).delay(400);
+    buttonSound(rcc) ;
+
     $(".btn").on("click", function clickHandler(){
+        console.log("click") ; 
         var userChosenColor = $(this).attr("id") ;
         userClickedPattern.push(userChosenColor) ;
-        buttonFlash(userChosenColor) ; 
-        buttonSound(userChosenColor) ;
+
+        buttonFlash(userChosenColor) ; buttonSound(userChosenColor) ;
+        
         if (equalityChecker()===false){
-            levelFailed();
+            levelFailed();     
         }
+        
         else if(userClickedPattern.length === gamePattern.length){
-            $("h1").fadeOut(100).text("Level Passed").fadeIn(100) ;
-            userClickedPattern = [];
-            rcc = nextSequence() ; 
-            buttonSound(rcc) ; 
-            buttonFlash(rcc) ;
-            // levelPassed();
+            levelPassed() ; 
         }   
-    }) ;    
+    }) ;
 }
 
-function levelPassed(){
+function levelPassed() {
+    level++;
+    $("h1").fadeOut(100).text("Level "+level).fadeIn(100) ;
     userClickedPattern = [];
-    $("h1").fadeOut(100).text("Level Passed").fadeIn(100) ;
-    keypressHandler();
-
+    rcc = nextSequence() ; 
+    $("."+rcc).delay(700);
+    buttonSound(rcc) ; 
+    buttonFlash(rcc) ;
 }
 
 function levelFailed() {
+    userClickedPattern = [] ; 
+    gamePattern = [] ; 
+    level = 1;
+    $(".btn").off("click") ; 
+    $(document).on("keypress", keypressHandler) ; 
     var wrong = new Audio("sounds/wrong.mp3") ;
     wrong.play() ; 
-    $("h1").fadeOut(100).text("Wrong Button, Press any key to try again").fadeIn(100) ; 
-    userClickedPattern = [] ; 
-    gamePattern = [] ;    
+    $("h1").fadeOut(100).text("Wrong Button, Press any key to try again").fadeIn(100) ;  
+    $("body").addClass("game-over") ;
+    setTimeout(function() {
+        $("body").removeClass("game-over") ;
+    },100) ;  
 }
 
 $(document).on("keypress", keypressHandler) ; 
