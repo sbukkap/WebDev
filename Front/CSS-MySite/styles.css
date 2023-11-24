@@ -1,0 +1,168 @@
+body {
+    /* background-color: lightgoldenrodyellow; */
+    background-color: #191825;
+}
+.Div0 {
+    text-align: center;
+    color: #865DFF;
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+h1 {
+    margin: 0 auto 0 auto;
+    font-family: 'Prompt', sans-serif;
+    font-size: 75px;
+
+}
+
+hr {
+    border-style: dotted none none;
+    color: yellow;
+    border-color: yellow;
+    border-width: 10px;
+    width: 10%;
+}
+
+.cloud1 {
+    position: absolute;
+    right: 470px;
+    top: 200px;
+
+}
+.cloud2 {
+    position: absolute;
+    top: 250px;
+}
+
+.paragraph {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+p {
+    color: #FFA3FD;
+}
+
+.profile {
+    font-family: 'Prompt', sans-serif;
+    margin: auto 300px 100px 300px;
+}
+
+.profile-para {
+    color: white;
+    font-size: 30px;
+}
+
+.skills {
+    font-family: 'Prompt', sans-serif;
+}
+
+.skill-row {
+    width: 50%;
+    margin: auto auto 100px auto;
+    text-align: left;
+}
+.name {
+    color: black;
+    font-weight: bolder;
+}
+
+.skillspng {
+    float: left;
+    margin-right: 30px;
+    width: 150px;
+    height: 150px;
+}
+.gamepng {
+    float: right;
+    margin-left: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+.white {
+    color: bisque;
+    font-weight: bold;
+}
+
+.footer-link {
+    color: white;
+}
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: 60px;
+    font-size: 50px;
+}
+
+.middle-container {
+    line-height: 2;
+    margin-bottom: 100px;
+}
+
+.link {
+    color: white;
+}
+
+.bottom-container {
+    font-family: 'Prompt', sans-serif;
+    font-size: 45px;
+    background-color: white;
+    margin-bottom: 0;
+    border-bottom: 0;
+
+}
+ 
+.footer-link {
+    font-family: 'Prompt', sans-serif;
+    font-size: 25px;
+    color: purple;
+    font-weight: 1000;
+}
+/* remove underlines for links */
+.footer-link:link {
+  text-decoration: none;
+}
+
+.footer-link:visited {
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer-link:active {
+  text-decoration: underline;
+}
+  /* that's it  */
+
+.btn {
+    background: #ffffff;
+    background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+    -webkit-border-radius: 22;
+    -moz-border-radius: 22;
+    border-radius: 22px;
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    font-size: 30px;
+    padding: 7px 18px 9px 18px;
+    text-decoration: none;
+    font-weight: bolder;
+  }
+  
+  .btn:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+  }

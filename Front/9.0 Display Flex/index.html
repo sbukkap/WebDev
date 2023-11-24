@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Column Layout Methods</title>
+  <style>
+    p {
+      padding: 0;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .container {
+      padding: 10px;
+      background-color: gold;
+      border: 2px solid black;
+      display: inline-flex;
+      align-items: flex-end;
+      height: 300px;
+      width: 600px;
+    }
+    .container > li {
+      border: 2px solid black;
+      margin-right: 10px;
+    }
+    .demo {
+      align-self: flex-start;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <li class="demo">FLEX Demonstration :)</li>
+    <p>Page Layout Methods</p>
+
+    <li><a href="./html-table.html">HTML Table</a></li>
+    <li><a href="./inline-block.html">Inline-Block</li>
+    <li><a href="./absolute-position.html">Absolute Positioning</li>
+    <li><a href="./float.html">Float</li>
+    <li><a href="./flex.html">Flexbox</li>
+
+  </div>
+</body>
+
+</html>

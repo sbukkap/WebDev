@@ -1,0 +1,33 @@
+body {
+    background-color: blanchedalmond;
+}
+hr {
+    border-style: dotted none none;
+    color: red;
+    border-color: blueviolet;
+    border-width: 5px;
+    width: 30%;
+}
+div {
+    justify-content: center;
+}
+h1 {
+    color: blueviolet;
+}
+h3 {
+    color: blueviolet;
+}
+img:hover{
+    background-color: black;
+}
+
+.Teddy {
+    background-color: bisque;
+
+}
+
+.wolf {
+    background-color: chartreuse;
+}
+
+
